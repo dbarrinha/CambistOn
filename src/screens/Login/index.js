@@ -7,6 +7,8 @@ const { height, width } = Dimensions.get("window");
 const { Value, event, block, cond, eq, set } = Animated
 
 console.disableYellowBox = true;
+
+
 export default class Login extends Component {
   static navigationOptions = {
     header: null,
