@@ -26,7 +26,7 @@ class AuthLoadingScreen extends React.Component {
     const user = await AsyncStorage.getItem('user:Camb')
     if (user === null) {
       this.props.navigation.navigate('AuthStack')
-    }else{
+    } else {
       console.log("teste")
     }
   };
@@ -42,10 +42,22 @@ class AuthLoadingScreen extends React.Component {
 
 const HomeStack = createNativeStackNavigator({
   Home: Home
+},
+{
+  headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    },
 });
 
 const AuthStack = createNativeStackNavigator({
   Login: Login
+},
+{
+  headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    },
 });
 
 const MySwitch = createAnimatedSwitchNavigator(
@@ -55,6 +67,7 @@ const MySwitch = createAnimatedSwitchNavigator(
     HomeStack: HomeStack,
   },
   {
+    
     initialRouteName: 'AuthLoading',
     transition: (
       <Transition.Together>
@@ -63,7 +76,10 @@ const MySwitch = createAnimatedSwitchNavigator(
           durationMs={500}
           interpolation="easeIn"
         />
-        <Transition.In type="slide-right" durationMs={500} />
+        <Transition.In
+          type="slide-right"
+          durationMs={500}
+        />
       </Transition.Together>
     ),
   }
