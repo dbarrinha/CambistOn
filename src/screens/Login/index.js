@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,7 +8,7 @@ import {
   TextInput
 } from 'react-native';
 import SVG, { ClipPath, Circle, Svg, Image } from 'react-native-svg'
-import LinearGradient from 'react-native-linear-gradient';
+import { NavigationContext } from 'react-navigation';
 import Animated, { Easing } from 'react-native-reanimated';
 const { height, width } = Dimensions.get("window");
 const {
@@ -58,6 +58,7 @@ runTiming = (clock, value, dest) => {
 }
 
 export default Login = () => {
+  const navigation = useContext(NavigationContext);
   let animationState = new Value(0)
   let buttonOpacity = new Value(1)
 
@@ -107,7 +108,7 @@ export default Login = () => {
   return (
     <View style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-end' }}>
       <Animated.View style={[StyleSheet.absoluteFill, { transform: [{ translateY: bgY }] }]}>
-        <Svg height={height + 50} width={width}>
+        <SVG height={height + 50} width={width}>
           <ClipPath id='clip'>
             <Circle r={height + 50} cx={width / 2} />
           </ClipPath>
@@ -118,7 +119,7 @@ export default Login = () => {
             preserveAspectRatio="xMidyMid slice"
             clipPath="url(#clip)"
           />
-        </Svg>
+        </SVG>
       </Animated.View>
       <View style={{ height: height / 3, justifyContent: 'center' }}>
         <TouchableWithoutFeedback onPress={() => animationState.setValue(1)}>
@@ -128,19 +129,21 @@ export default Login = () => {
               </Text>
           </Animated.View>
         </TouchableWithoutFeedback>
-        <Animated.View
-          style={[styles.button,
-          {
-            backgroundColor: '#2e71dc',
-            marginTop: 10,
-            opacity: buttonOpacity,
-            transform: [{ translateY: buttonY }]
-          }
-          ]}>
-          <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>
-            SIGN IN WITH FACEBOOK
+        <TouchableWithoutFeedback onPress={() => navigation.navigate("HomeStack")}>
+          <Animated.View
+            style={[styles.button,
+            {
+              backgroundColor: '#2e71dc',
+              marginTop: 10,
+              opacity: buttonOpacity,
+              transform: [{ translateY: buttonY }]
+            }
+            ]}>
+            <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>
+              SIGN IN WITH FACEBOOK
               </Text>
-        </Animated.View>
+          </Animated.View>
+        </TouchableWithoutFeedback>
         <Animated.View
           style={[StyleSheet.absoluteFill,
           {
@@ -184,7 +187,7 @@ export default Login = () => {
 var styles = StyleSheet.create({
   linearGradient: {
     width: width,
-    height: height + 70,
+    height: height + 50,
     paddingLeft: 15,
     paddingRight: 15,
 
@@ -222,7 +225,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    top: -10,
+    top: -5,
     left: width / 2 - 20,
     shadowOffset: { width: 5, height: 5 },
     shadowColor: 'black',
