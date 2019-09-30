@@ -72,12 +72,12 @@ const MySwitch = createAnimatedSwitchNavigator(
     transition: (
       <Transition.Together>
         <Transition.Out
-          type="slide-left"
+          type="fade"
           durationMs={500}
           interpolation="easeIn"
         />
         <Transition.In
-          type="slide-right"
+          type="slide-bottom"
           durationMs={500}
         />
       </Transition.Together>

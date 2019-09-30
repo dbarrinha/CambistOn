@@ -1,63 +1,35 @@
-import React, { useState,useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Dimensions,
   TouchableWithoutFeedback,
-  TextInput
+  TextInput,
+  Platform
 } from 'react-native';
-import SVG, { ClipPath, Circle, Svg, Image } from 'react-native-svg'
-import { NavigationContext } from 'react-navigation';
+import SVG, { ClipPath, Circle, Image } from 'react-native-svg'
+import { withNavigation, NavigationContext } from 'react-navigation';
+import { useNavigation } from 'react-navigation-hooks'
 import Animated, { Easing } from 'react-native-reanimated';
 const { height, width } = Dimensions.get("window");
+import { runTiming } from 'utils/animated'
 const {
   Value,
-  block,
   cond,
   eq, set,
   useCode,
   Clock,
-  startClock,
-  stopClock,
-  debug,
-  timing,
-  clockRunning,
   interpolate,
   Extrapolate,
-  concat } = Animated
+  concat
+} = Animated
 console.disableYellowBox = true;
 
-runTiming = (clock, value, dest) => {
-  const state = {
-    finished: new Value(0),
-    position: new Value(0),
-    time: new Value(0),
-    frameTime: new Value(0)
-  };
 
-  const config = {
-    duration: 1000,
-    toValue: new Value(0),
-    easing: Easing.inOut(Easing.ease)
-  };
-
-  return block([
-    cond(clockRunning(clock), 0, [
-      set(state.finished, 0),
-      set(state.time, 0),
-      set(state.position, value),
-      set(state.frameTime, 0),
-      set(config.toValue, dest),
-      startClock(clock)
-    ]),
-    timing(clock, state, config),
-    cond(state.finished, debug('stop clock', stopClock(clock))),
-    state.position
-  ]);
-}
 
 export default Login = () => {
+  const { navigate } = useNavigation();
   const navigation = useContext(NavigationContext);
   let animationState = new Value(0)
   let buttonOpacity = new Value(1)
@@ -70,7 +42,7 @@ export default Login = () => {
   })
   let bgY = interpolate(buttonOpacity, {
     inputRange: [0, 1],
-    outputRange: [-height / 3 - 50, 0],
+    outputRange: [-height / 3 - 100, 0],
     extrapolate: Extrapolate.CLAMP
   })
   let textInputZindex = interpolate(buttonOpacity, {
@@ -105,17 +77,23 @@ export default Login = () => {
       set(buttonOpacity, runTiming(new Clock(), 0, 1))
     ), [animationState])
 
+  useEffect(() => {
+    const subsWF = navigation.addListener('willFocus', ()=> console.log("fsdfsdfs"));
+    return () => {
+      subsWF.remove();
+    };
+  });
   return (
     <View style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-end' }}>
-      <Animated.View style={[StyleSheet.absoluteFill, { transform: [{ translateY: bgY }] }]}>
-        <SVG height={height + 50} width={width}>
+      <Animated.View style={[StyleSheet.absoluteFill, { transform: [{ translateY: bgY }], flex: 1 }]}>
+        <SVG height={height + 100} width={width}>
           <ClipPath id='clip'>
-            <Circle r={height + 50} cx={width / 2} />
+            <Circle r={height + 100} cx={width / 2} />
           </ClipPath>
           <Image
             href={require('../../assets/bg2.jpg')}
             width={width}
-            height={height + 50}
+            height={height + 100}
             preserveAspectRatio="xMidyMid slice"
             clipPath="url(#clip)"
           />
@@ -129,7 +107,7 @@ export default Login = () => {
               </Text>
           </Animated.View>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate("HomeStack")}>
+        <TouchableWithoutFeedback>
           <Animated.View
             style={[styles.button,
             {
@@ -144,13 +122,14 @@ export default Login = () => {
               </Text>
           </Animated.View>
         </TouchableWithoutFeedback>
+        
         <Animated.View
           style={[StyleSheet.absoluteFill,
           {
             zIndex: textInputZindex,
             opacity: textInputOpacity,
             transform: [{ translateY: textInputY }],
-            height: height / 3,
+            height: height / 3 ,
             top: null,
             justifyContent: "center",
           }
@@ -202,14 +181,14 @@ var styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'white',
-    height: 70,
+    height: height / 14,
     marginHorizontal: 20,
     borderRadius: 35,
     alignItems: 'center',
     justifyContent: 'center'
   },
   textinput: {
-    height: 50,
+    height: height / 15,
     marginHorizontal: 20,
     borderRadius: 25,
     paddingLeft: 10,
@@ -225,7 +204,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    top: -5,
+    top: -10,
     left: width / 2 - 20,
     shadowOffset: { width: 5, height: 5 },
     shadowColor: 'black',
