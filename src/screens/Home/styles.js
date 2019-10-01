@@ -19,21 +19,17 @@ export const Card = styled.View`
     align-items: center;
     margin-left:5px;
     margin-right: 5px;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #fff;
     elevation: 3px;
     margin-top: 5px;
     margin-bottom: 5px;
-      
-    
 `;
 
 export const Separator = styled.View`
     width: ${width};
     height:1;
-    background-color: #5c5c5c;
-    position: absolute;
-    bottom:0;
+    background-color: #c5c5c5;
 `;
 
 export const Thumb = styled.Image.attrs(props => ({
@@ -41,8 +37,8 @@ export const Thumb = styled.Image.attrs(props => ({
 }))`
     width: ${width / 4};
     height:${width / 4};
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     background-color: white
 `;
 
@@ -65,6 +61,33 @@ export const TextFooter = styled.Text`
     left:5;
     color: ${colors.colorFontFooter};
     font-weight: bold;
+`;
+
+export const CardSugestao = styled.View`
+    width: ${width / 1.5};
+    height:${width / 2};
+    flex-direction: column;
+    border-radius: 5px;
+    
+    margin-left: 5px;
+    margin-right: 5px;
+
+`;
+
+export const ThumbSugestao = styled.Image.attrs(props => ({
+    source: props.src,
+}))`
+    width: ${width / 1.5};
+    height:${width / 3};
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: white
+`;
+
+export const ContainerSugestao = styled.View`
+    height:${width / 1.8};
+    margin-top : 10px;
+    margin-bottom: 5px;
 `;
 
 
