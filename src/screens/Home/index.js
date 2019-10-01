@@ -34,6 +34,7 @@ export default Home = () => {
           <Description>
             {item.item.descricao}
           </Description>
+          <Title>R$ 500</Title>
           <TextFooter>
             30 setembro 13:10, Centro
           </TextFooter>

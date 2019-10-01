@@ -15,7 +15,7 @@ export default function Sugestoes() {
         return (
             <CardSugestao>
                 <ThumbSugestao src={{ uri: 'https://placeimg.com/140/140/any' }} />
-                <View style={{ padding: 10 }}>
+                <View style={{ padding: 5 }}>
                     <Title>{item.item.nome}</Title>
                     <Description>R$ 15</Description>
                 </View>

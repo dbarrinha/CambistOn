@@ -1,5 +1,5 @@
 const colorBackground = "#f3f0fa"
-const colorFont = "#424040"
+const colorFont = "#5c5a5a" /*#424040*/
 const colorFontFooter = "#8c8b8b"
 export const colors = {
     colorBackground,
