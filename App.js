@@ -1,5 +1,5 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import createNativeStackNavigator from 'react-native-screens/createNativeStackNavigator';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
@@ -60,28 +60,14 @@ const AuthStack = createNativeStackNavigator({
     },
 });
 
-const MySwitch = createAnimatedSwitchNavigator(
+const MySwitch = createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     AuthStack: AuthStack,
     HomeStack: HomeStack,
   },
   {
-    
     initialRouteName: 'AuthLoading',
-    transition: (
-      <Transition.Together>
-        <Transition.Out
-          type="fade"
-          durationMs={500}
-          interpolation="easeIn"
-        />
-        <Transition.In
-          type="slide-bottom"
-          durationMs={500}
-        />
-      </Transition.Together>
-    ),
   }
 );
 

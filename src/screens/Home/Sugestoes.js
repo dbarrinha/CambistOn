@@ -14,7 +14,7 @@ export default function Sugestoes() {
     const renderSugestao = (item) => {
         return (
             <CardSugestao>
-                <ThumbSugestao src={{ uri: 'https://placeimg.com/140/140/any' }} />
+                <ThumbSugestao source={require('assets/imgs/notebook.jpg')} />
                 <ContainerPreco>
                     <Preco>R$ 15</Preco>
                 </ContainerPreco>
@@ -33,6 +33,7 @@ export default function Sugestoes() {
             <FlatList
                 horizontal
                 data={sugestoes}
+                keyExtractor={item => item.nome+""}
                 extraData={sugestoes}
                 renderItem={(item) => renderSugestao(item)}
             />

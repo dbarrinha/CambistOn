@@ -21,9 +21,9 @@ export const Card = styled.View`
     margin-right: 5px;
     border-radius: 10px;
     background-color: #fff;
-    elevation: 3px;
     margin-top: 5px;
     margin-bottom: 5px;
+    elevation: 5px;
 `;
 
 export const Separator = styled.View`
@@ -33,7 +33,7 @@ export const Separator = styled.View`
 `;
 
 export const Thumb = styled.Image.attrs(props => ({
-    source: props.src,
+    source: props.source,
 }))`
     width: ${width / 4};
     height:${width / 4};
@@ -76,7 +76,7 @@ export const CardSugestao = styled.View`
 `;
 
 export const ThumbSugestao = styled.Image.attrs(props => ({
-    source: props.src,
+    source: props.source,
 }))`
     width: ${width / 1.5};
     height:${width / 3};
