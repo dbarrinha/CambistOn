@@ -1,20 +1,18 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Dimensions,
   TouchableWithoutFeedback,
-  TextInput,
-  Platform
+  TextInput
 } from 'react-native';
 import SVG, { ClipPath, Circle, Image } from 'react-native-svg'
-import { withNavigation, NavigationContext } from 'react-navigation';
-import { useNavigation,useNavigationState } from 'react-navigation-hooks'
+
+import { useNavigation } from 'react-navigation-hooks'
 import Animated, { Easing } from 'react-native-reanimated';
 const { height, width } = Dimensions.get("window");
 import { runTiming } from 'utils/animated'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 const {
   Value,
   cond,
@@ -31,8 +29,6 @@ console.disableYellowBox = true;
 
 export default Login = () => {
   const { navigate } = useNavigation();
-  const navigation = useContext(NavigationContext);
-  const { routeName } = useNavigationState();
   let animationState = new Value(0)
   let buttonOpacity = new Value(1)
 
@@ -83,12 +79,7 @@ export default Login = () => {
       set(buttonOpacity, runTiming(new Clock(), 0, 1))
     ), [animationState])
 
-  useEffect(() => {
-    const subsWF = navigation.addListener('willFocus', ()=> console.log("fsdfsdfs"));
-    return () => {
-      subsWF.remove();
-    };
-  });
+  
   return (
     <View style={{ flex: 1, backgroundColor: 'white', justifyContent: 'flex-end' }}>
       <Animated.View style={[StyleSheet.absoluteFill, { transform: [{ translateY: bgY }], flex: 1 }]}>

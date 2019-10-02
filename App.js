@@ -9,8 +9,10 @@ import {
 } from 'react-native';
 import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import { Transition } from 'react-native-reanimated';
+import {SharedElementRenderer} from 'react-native-motion'
 
 import Home from 'screens/Home'
+import Details from 'screens/Details'
 import Login from 'screens/Login'
 import { useScreens } from 'react-native-screens';
 useScreens();
@@ -25,7 +27,7 @@ class AuthLoadingScreen extends React.Component {
   _bootstrapAsync = async () => {
     const user = await AsyncStorage.getItem('user:Camb')
     if (user === null) {
-      this.props.navigation.navigate('HomeStack')
+      this.props.navigation.navigate('AuthStack')
     } else {
       console.log("teste")
     }
@@ -41,24 +43,26 @@ class AuthLoadingScreen extends React.Component {
 }
 
 const HomeStack = createNativeStackNavigator({
-  Home: Home
+  Home: Home,
+  Details: Details
 },
-{
-  headerMode: 'none',
+  {
+    headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
     },
-});
+  });
+  
 
 const AuthStack = createNativeStackNavigator({
   Login: Login
 },
-{
-  headerMode: 'none',
+  {
+    headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
     },
-});
+  });
 
 const MySwitch = createSwitchNavigator(
   {
@@ -72,6 +76,7 @@ const MySwitch = createSwitchNavigator(
 );
 
 const AppNavigation = createAppContainer(MySwitch);
+
 
 
 export default AppNavigation;
