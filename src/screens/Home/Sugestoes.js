@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Dimensions } from 'react-native';
-import { CardSugestao, ThumbSugestao, ContainerSugestao, Title, Description } from './styles';
+import { CardSugestao, ThumbSugestao, Title, Preco, ContainerPreco } from './styles';
 import { FlatList } from 'react-native-gesture-handler';
 const { height, width } = Dimensions.get("window");
 
@@ -15,16 +15,19 @@ export default function Sugestoes() {
         return (
             <CardSugestao>
                 <ThumbSugestao src={{ uri: 'https://placeimg.com/140/140/any' }} />
+                <ContainerPreco>
+                    <Preco>R$ 15</Preco>
+                </ContainerPreco>
                 <View style={{ padding: 5 }}>
                     <Title>{item.item.nome}</Title>
-                    <Description>R$ 15</Description>
+
                 </View>
             </CardSugestao>
         )
     }
     return (
-        <ContainerSugestao >
-            <View style={{margin: 5}}>
+        <View>
+            <View style={{ margin: 5 }}>
                 <Title>Sugestões para você</Title>
             </View>
             <FlatList
@@ -33,6 +36,6 @@ export default function Sugestoes() {
                 extraData={sugestoes}
                 renderItem={(item) => renderSugestao(item)}
             />
-        </ContainerSugestao>
+        </View>
     );
 }

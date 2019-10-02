@@ -46,8 +46,7 @@ export default Home = () => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.colorBackground, paddingVertical: 5 }}>
       <StatusBar backgroundColor={colors.colorBackground} barStyle="dark-content" />
-
-      <Sugestoes />
+      <Sugestoes  />
       <View style={{ margin: 5 }}>
         <Title>Mais produtos</Title>
       </View>
@@ -55,6 +54,7 @@ export default Home = () => {
         data={produtos}
         extraData={produtos}
         renderItem={(item) => renderCard(item)}
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );

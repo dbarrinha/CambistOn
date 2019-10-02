@@ -65,13 +65,14 @@ export const TextFooter = styled.Text`
 
 export const CardSugestao = styled.View`
     width: ${width / 1.5};
-    height:${width / 2};
+    height:${width / 2.2};
     flex-direction: column;
-    border-radius: 5px;
-    
+    border-radius: 10px;
+    background-color: #fff;
     margin-left: 5px;
     margin-right: 5px;
-
+    margin-bottom: 5px;
+    elevation: 5px;
 `;
 
 export const ThumbSugestao = styled.Image.attrs(props => ({
@@ -79,15 +80,29 @@ export const ThumbSugestao = styled.Image.attrs(props => ({
 }))`
     width: ${width / 1.5};
     height:${width / 3};
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
     background-color: white
 `;
 
-export const ContainerSugestao = styled.View`
-    height:${width / 1.8};
-    margin-top : 10px;
-    margin-bottom: 5px;
+export const ContainerPreco = styled.View`
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 30px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 5px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const Preco = styled.Text`
+    font-size: 15px;
+    color: ${colors.colorFont};
+    font-weight: bold;
 `;
 
 
