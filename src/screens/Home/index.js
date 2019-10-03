@@ -9,6 +9,7 @@ import {
   TextFooter
 } from './styles'
 import Sugestoes from './Sugestoes'
+import Filtros from './Filtros'
 import { colors } from 'config/colors'
 import { FlatList } from 'react-native-gesture-handler';
 import { useNavigation } from 'react-navigation-hooks'
@@ -62,6 +63,7 @@ export default Home = () => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.colorBackground, paddingVertical: 5 }}>
       <StatusBar backgroundColor={colors.colorBackground} barStyle="dark-content" />
+      <Filtros />
       <Sugestoes />
       <View style={{ margin: 5 }}>
         <Title>Mais produtos</Title>
