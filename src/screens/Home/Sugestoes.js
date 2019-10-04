@@ -14,7 +14,7 @@ export default function Sugestoes() {
     const renderSugestao = (item) => {
         return (
             <CardSugestao>
-                <ThumbSugestao source={require('assets/imgs/notebook.jpg')} />
+                <ThumbSugestao source={require('assets/imgs/livros.jpeg')} />
                 <ContainerPreco>
                     <Preco>R$ 15</Preco>
                 </ContainerPreco>

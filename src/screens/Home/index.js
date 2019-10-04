@@ -1,21 +1,12 @@
-import React, { useEffect } from 'react';
-import { View, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
-import {
-  Thumb,
-  Card,
-  CardInfo,
-  Title,
-  Description,
-  TextFooter
-} from './styles'
-import Sugestoes from './Sugestoes'
-import Filtros from './Filtros'
-import { colors } from 'config/colors'
+import { colors } from 'config/colors';
+import React from 'react';
+import { StatusBar, TouchableOpacity, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { useNavigation } from 'react-navigation-hooks'
 import Animated from 'react-native-reanimated';
-import { CardHomeSK } from 'components/skeleton'
-import { runTiming } from 'utils/animated'
+import { useNavigation } from 'react-navigation-hooks';
+import { Card, CardInfo, Description, TextFooter, Thumb, Title } from './styles';
+import Sugestoes from './Sugestoes';
+import Header from './Header';
 const {
   Value,
   cond,
@@ -38,11 +29,10 @@ export default Home = () => {
   ]
 
   const renderCard = (item) => {
-    console.log(item.index)
     return (
       <Card >
         <Thumb
-          source={require('assets/imgs/iphone.jpg')}
+          source={require('assets/imgs/livros.jpeg')}
         />
         <TouchableOpacity onPress={() => { navigate("Details") }}>
           <CardInfo>
@@ -63,7 +53,7 @@ export default Home = () => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.colorBackground, paddingVertical: 5 }}>
       <StatusBar backgroundColor={colors.colorBackground} barStyle="dark-content" />
-      <Filtros />
+      <Header teste="fsdfsdfs" />
       <Sugestoes />
       <View style={{ margin: 5 }}>
         <Title>Mais produtos</Title>
@@ -75,7 +65,10 @@ export default Home = () => {
         renderItem={(item) => renderCard(item)}
         showsHorizontalScrollIndicator={false}
       />
-      <CardHomeSK />
+      
+      {/*<View style={{width: 100, height: 100, position: 'absolute', backgroundColor: 'red', bottom: -80}}>
+
+  </View> */}
     </View>
   );
 
