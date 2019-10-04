@@ -68,15 +68,13 @@ export default Home = () => {
       <View style={{ margin: 5 }}>
         <Title>Mais produtos</Title>
       </View>
-      <Animated.View >
-        <FlatList
-          data={produtos}
-          keyExtractor={item => item.nome + ""}
-          extraData={produtos}
-          renderItem={(item) => renderCard(item)}
-          showsHorizontalScrollIndicator={false}
-        />
-      </Animated.View>
+      <FlatList
+        data={produtos}
+        keyExtractor={item => item.nome + ""}
+        extraData={produtos}
+        renderItem={(item) => renderCard(item)}
+        showsHorizontalScrollIndicator={false}
+      />
       <CardHomeSK />
     </View>
   );
