@@ -8,7 +8,6 @@ import {
     Description,
     TextFooter
 } from './styles'
-import Slider from '@react-native-community/slider';
 const { height, width } = Dimensions.get("window");
 
 export default function Details() {
@@ -18,13 +17,7 @@ export default function Details() {
             <View style={{ width: width, height: height }}>
                 <View style={{ width: width * 0.2, alignItems: 'center' }}>
                     <Text>0</Text>
-                    <Slider
-                        style={{ width: 200, height: 40, transform: [{rotate: '90deg'}] }}
-                        minimumValue={0}
-                        maximumValue={1}
-                        minimumTrackTintColor="#FFFFFF"
-                        maximumTrackTintColor="#000000"
-                    />
+                   
                     <Text>1</Text>
                 </View>
                 <View style={{ flexDirection: 'column', width: width * 0.8 }}>
